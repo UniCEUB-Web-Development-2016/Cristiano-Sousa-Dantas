@@ -22,6 +22,7 @@ class User
 		$this->job = $job;
 		$this->salary = $salary;
 		$this->email = $email;
+		
 	}
 	
 

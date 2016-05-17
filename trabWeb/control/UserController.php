@@ -9,33 +9,42 @@ class UserController
 		$params = $request->get_params();
 		$user = new User($params["first_name"],
 				 $params["last_name"],
-				 $params["email"],
-				 $params["birthdate"],
-				 $params["phone"],
-				 $params["password"]);
-		$db = new DatabaseConnector("localhost", "facebook", "mysql", "", "root", "");
+				 $params["age"],
+				 $params["gender"],
+				 $params["country"],
+				 $params["city"],
+				 $params["job"],
+				 $params["salary"],
+				 $params["email"]);
+				 
+		$db = new DatabaseConnector("localhost", "bancoweb", "mysql", "", "root", "");
 		$conn = $db->getConnection();
+		
 		
 		
 	    return $conn->query($this->generateInsertQuery($user));	
 	}
 	private function generateInsertQuery($user)
 	{
-		$query =  "INSERT INTO user (first_name, last_name, email, birthdate, phone, pass) VALUES ('".$user->getName()."','".
+		$query =  "INSERT INTO user (first_name, last_name, age, gender, country, city, job, salary, email) VALUES ('".$user->getFirstName()."','".
 					$user->getLastName()."','".
-					$user->getEmail()."','".
-					$user->getBirthdate()."','".
-					$user->getPhone()."','". 
-					$user->getPassword()."')";
+					$user->getAge()."','".
+					$user->getGender()."','".
+					$user->getCountry()."','". 
+					$user->getCity()."','".
+					$user->getJob()."','".
+					$user->getSalary()."','".
+					$user->getEmail()."')";
+				
 		return $query;						
 	}
 	public function search($request)
 	{
 		$params = $request->get_params();
 		$crit = $this->generateCriteria($params);
-		$db = new DatabaseConnector("localhost", "facebook", "mysql", "", "root", "");
+		$db = new DatabaseConnector("localhost", "bancoweb", "mysql", "", "root", "");
 		$conn = $db->getConnection();
-		$result = $conn->query("SELECT first_name, last_name, email, birthdate, phone FROM user WHERE ".$crit);
+		$result = $conn->query("SELECT first_name, last_name, age, gender, country, city, job, salary, email FROM user WHERE ".$crit);
 		//foreach($result as $row) 
 		return $result->fetchAll(PDO::FETCH_ASSOC);
 	}

@@ -8,6 +8,7 @@ class Active
 	{
 		$this->activeName = $activeName;
 		$this->avalue = $avalue;
+		}
 	
     /**
      * Gets the value of activeName.

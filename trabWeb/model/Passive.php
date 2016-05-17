@@ -8,7 +8,7 @@ class Passive
 	{
 		$this->passiveName = $passiveName;
 		$this->pvalue = $value;
-	
+	}
     /**
      * Gets the value of passiveName.
      *

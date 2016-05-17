@@ -1,6 +1,6 @@
 <?php
 include_once "model/Request.php";
-include_once "model/User.php";
+include_once "model/Active.php";
 include_once "database/DatabaseConnector.php";
 class ActiveController
 {
@@ -8,7 +8,7 @@ class ActiveController
 	{
 		$params = $request->get_params();
 		$active = new Active($params["activeName"],
-				 $params["avalue"],
+				 $params["avalue"]);
 				
 		$db = new DatabaseConnector("localhost", "bancoWeb", "mysql", "", "root", "");
 		$conn = $db->getConnection();
@@ -18,8 +18,8 @@ class ActiveController
 	}
 	private function generateInsertQuery($active)
 	{
-		$query =  "INSERT INTO active (activeName, avalue) VALUES ('".$active->get actioveName()."','".
-					$releases->avalue()."','".
+		$query =  "INSERT INTO active (activeName, avalue) VALUES ('".$active->getActiveName()."','".
+					$releases->getAvalue()."')";
 					
 		return $query;						
 	}

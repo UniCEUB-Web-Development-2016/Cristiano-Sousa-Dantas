@@ -1,6 +1,6 @@
 <?php
 include_once "model/Request.php";
-include_once "model/User.php";
+include_once "model/Releases.php";
 include_once "database/DatabaseConnector.php";
 class ReleasesController
 {
@@ -8,18 +8,19 @@ class ReleasesController
 	{
 		$params = $request->get_params();
 		$releases = new Releases($params["rdate"],
-				 $params["value"],
+				 $params["value"]);
 				
 		$db = new DatabaseConnector("localhost", "bancoWeb", "mysql", "", "root", "");
 		$conn = $db->getConnection();
 		
 		
 	    return $conn->query($this->generateInsertQuery($releases));	
+
 	}
 	private function generateInsertQuery($releases)
 	{
-		$query =  "INSERT INTO releases (rdate, value) VALUES ('".$relaeses->get rdate()."','".
-					$releases->value()."','".
+		$query =  "INSERT INTO releases (rdate, value) VALUES ('".$relaeses->getRdate()."','".
+					$releases->getValue()."')";
 					
 		return $query;						
 	}

@@ -1,6 +1,6 @@
 <?php
 include_once "model/Request.php";
-include_once "model/User.php";
+include_once "model/Passive.php";
 include_once "database/DatabaseConnector.php";
 class PassiveController
 {
@@ -8,7 +8,7 @@ class PassiveController
 	{
 		$params = $request->get_params();
 		$passive = new Passive($params["passiveName"],
-				 $params["pvalue"],
+				 $params["pvalue"]);
 				
 		$db = new DatabaseConnector("localhost", "bancoWeb", "mysql", "", "root", "");
 		$conn = $db->getConnection();
@@ -18,8 +18,8 @@ class PassiveController
 	}
 	private function generateInsertQuery($passive)
 	{
-		$query =  "INSERT INTO passive (PassiveName, pvalue) VALUES ('".$passive->get passiveName()."','".
-					$releases->pvalue()."','".
+		$query =  "INSERT INTO passive (PassiveName, pvalue) VALUES ('".$passive->getPassiveName()."','".
+					$releases->getPvalue()."')";
 					
 		return $query;						
 	}

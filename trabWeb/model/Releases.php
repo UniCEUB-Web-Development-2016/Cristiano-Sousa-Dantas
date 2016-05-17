@@ -1,25 +1,49 @@
 <?php
 class Releases
 {
-	private $first_name;
-	private $last_name;
-	private $age;
-	private $gender;
-	private $country;
-	private $city;
-	private $job;
-	private $salary;
-	private $email;
-	public function __construct($first_name, $last_name,
-	$age, $gender, $country, $city, $job, $salary, $email)
+	private $rdate;
+	private $value;
+
+	public function __construct($rdate, $value)
 	{
-		$this->first_name = $first_name;
-		$this->last_name = $last_name;
-		$this->age = $age;
-		$this->gender = $gender;
-		$this->country = $country;
-		$this->city = $city;
-		$this->job = $job;
-		$this->salary = $salary;
-		$this->email = $email;
+		$this->rdate = $rdate;
+		$this->value = $value;
 	}
+	
+	public function getRdate()
+    {
+        return $this->rdate;
+    }
+
+    /**
+     * Sets the value of first_name.
+     *
+     * @param mixed $first_name the first name
+     *
+     * @return self
+     */
+    private function _setRdate($rdate)
+    {
+        $this->rdate = $rdate;
+
+        return $this;
+    }
+public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Sets the value of first_name.
+     *
+     * @param mixed $first_name the first name
+     *
+     * @return self
+     */
+    private function _setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+}
